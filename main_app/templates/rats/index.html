@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Rat List</h1>
+
+{% for rat in rats %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ rat.name }}</span>
+      <p>Color: {{ rat.color }}</p>
+      <p>Sex: {{ rat.sex }}</p>
+      {% if rat.age > 0 %}
+        <p>Age: {{ rat.age }}</p>
+      {% else %}
+        <p>Age: Ratatouille</p>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
