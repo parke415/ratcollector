@@ -4,8 +4,8 @@
 <h1>Rat List</h1>
 
 {% for rat in rats %}
-  <div class="card">
-    <a href="{% url 'detail' rat.id %}">
+  <a href="{% url 'detail' rat.id %}">
+    <div class="card"></div>
       <div class="card-content">
         <span class="card-title">{{ rat.name }}</span>
         <p>Color: {{ rat.color }}</p>
@@ -16,8 +16,8 @@
           <p>Age: Ratatouille</p>
         {% endif %}
       </div>
-    </a>
-  </div>
+    </div>
+  </a>
 {% endfor %}
 
 {% endblock %}

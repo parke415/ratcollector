@@ -3,17 +3,58 @@
 
 <h1>Rat Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ rat.name }}</span>
-    <p>Color: {{ rat.color }}</p>
-    <p>Sex: {{ rat.sex }}</p>
-    {% if rat.age > 0 %}
-      <p>Age: {{ rat.age }}</p>
-    {% else %}
-      <p>Age: Ratatouille</p>
-    {% endif %}
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ rat.name }}</span>
+        <p>Color: {{ rat.color }}</p>
+        <p>Sex: {{ rat.sex }}</p>
+        {% if rat.age > 0 %}
+          <p>Age: {{ rat.age }}</p>
+        {% else %}
+          <p>Age: Ratatouille</p>
+        {% endif %}
+      </div>
+      <div class="card-action">
+        <a href="{% url 'cats_update' rat.id %}">Edit</a>
+        <a href="{% url 'cats_delete' rat.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+    <form action="{% url 'add_outing' rat.id %}" method="POST">
+      {% csrf_token %}
+      {{ outing_form.as_p }}
+      <input type="submit" value="Add Outing" class="btn">
+    </form>
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Round</th></tr>
+      </thead>
+      <tbody>
+        {% for outing in rat.outing_set.all %}
+          <tr>
+            <td>{{outing.date}}</td>
+            <td>{{outing.get_round_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
+
+<script>
+  const dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  const selectEl = document.getElementById('id_round');
+  M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}
