@@ -44,6 +44,48 @@
   </div>
 </div>
 
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{ rat.name }}'s Outfits</h3>
+    {% if rat.outfits.count %}
+      {% for outfit in rat.outfits.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A <span style="color: {{ outfit.color }}">{{ outfit.color }}</span> {{ outfit.size}} {{ outfit.name }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Outfits >:|</h5>
+    {% endif %}
+  </div>
+    <div class="col s6">
+    <h3>Available Outfits</h3>
+    {% if outfits.count %}
+      {% for outfit in outfits.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A <span style="color: {{ outfit.color }}">{{ outfit.color }}</span> {{ outfit.size}} {{ outfit.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_outfit' rat.id outfit.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{rat.name}} Already Has All Outfits Available</h5>
+    {% endif %}
+  </div>
+</div>
+
 <script>
   const dateEl = document.getElementById('id_date');
   M.Datepicker.init(dateEl, {
