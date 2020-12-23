@@ -5,4 +5,3 @@ class OutingForm(ModelForm):
   class Meta:
     model = Outing
     fields = ['date', 'round']
-    

@@ -47,29 +47,29 @@
 <hr>
 <div class="row">
   <div class="col s6">
-    <h3>{{ rat.name }}'s Outfits</h3>
+    <h3>{{ rat.name }}'s Wardrobe</h3>
     {% if rat.outfits.count %}
       {% for outfit in rat.outfits.all %}
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-              A <span style="color: {{ outfit.color }}">{{ outfit.color }}</span> {{ outfit.size}} {{ outfit.name }}
+              A {{ outfit.size}} <span style="color: {{ outfit.color }}">{{ outfit.color }}</span> {{ outfit.name }}
             </span>
           </div>
         </div>
       {% endfor %}
     {% else %}
-      <h5>No Outfits >:|</h5>
+      <h5>Empty... >:|</h5>
     {% endif %}
   </div>
     <div class="col s6">
-    <h3>Available Outfits</h3>
+    <h3>Outfit Gallery</h3>
     {% if outfits.count %}
       {% for outfit in outfits.all %}
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-              A <span style="color: {{ outfit.color }}">{{ outfit.color }}</span> {{ outfit.size}} {{ outfit.name }}
+              A {{ outfit.size}} <span style="color: {{ outfit.color }}">{{ outfit.color }}</span> {{ outfit.name }}
             </span>
           </div>
           <div class="card-action">
@@ -81,7 +81,7 @@
         </div>
       {% endfor %}
     {% else %}
-      <h5>{{rat.name}} Already Has All Outfits Available</h5>
+      <h5>There's nothing else for {{rat.name}} to wear!</h5>
     {% endif %}
   </div>
 </div>
