@@ -6,7 +6,7 @@ from .forms import OutingForm
 
 class RatCreate(CreateView):
   model = Rat
-  fields = '__all__'
+  fields = ['name', 'color', 'sex', 'age']
 
 class RatUpdate(UpdateView):
   model = Rat
